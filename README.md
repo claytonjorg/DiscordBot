@@ -8,7 +8,7 @@ The following API's and libraries were used:
 
 ### Commands
 - !about -> Displays a embed about message.
-- !help -> TODO
+- !help -> Displays a embed help message.
 - !website/web -> Displays a link to your website.
 - !ping -> Sends a ping and calculates the ms response time.
 - !servers -> Displays a embed servers message.
