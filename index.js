@@ -157,7 +157,7 @@ bot.on("message", async message =>
 
 		message.channel.send({embed})
 		 .then(function (message) {
-              message.react("📑")
+              	message.react("📑")
             }).catch(function() {
               console.error;
              });
@@ -235,8 +235,8 @@ bot.on("message", async message =>
 		const embed = new Discord.MessageEmbed()
 		.setTitle("Current Queue #1")
 		.setColor("#0099ff")
-        .setDescription(membersInQueue.join("\n"))
-        .setTimestamp()
+        	.setDescription(membersInQueue.join("\n"))
+        	.setTimestamp()
 
 		return message.channel.send({embed});
 	}
@@ -249,8 +249,8 @@ bot.on('voiceStateUpdate', (oldState, newState) =>
 	{
 		console.log('[DEBUG]Console: ' + newState.member.displayName + ' joined voice channel Queue.');
 		const m = newState.member.guild.channels.cache.get('771545218642214924').send(newState.member.displayName + ' joined voice channel Queue.')
-              .then((msg) => {
-                  getjointime[newState.member] = msg.createdTimestamp;
+              		.then((msg) => {
+                 	 getjointime[newState.member] = msg.createdTimestamp;
       });
 	}
 });
