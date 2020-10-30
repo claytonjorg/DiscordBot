@@ -4,12 +4,19 @@ const ms = require("ms");
 
 const bot = new Discord.Client({partials: ['MESSAGE','REACTION']});
 
+let getjointime = [0];
+
+function cleanDate(a)
+{
+  var d = new Date(a);
+  var c = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds();
+  return c;
+}
+
 bot.on("ready", async () => 
 {
 	console.log(`${bot.user.username} is online!`);
 });
-
-
 
 bot.on('guildMemberAdd', member => {
 	const embed = new Discord.MessageEmbed()
@@ -222,9 +229,30 @@ bot.on("message", async message =>
 	}
 	else if(cmd === `${prefix}queue`)
 	{
-		// TODO
+		let membersInChannel = message.guild.members.cache.filter(n => n.voice.channelID === "771784239132704779");
+		let membersInQueue = membersInChannel.map(n => n.displayName + " (" + cleanDate(getjointime[n]) + ")");
+
+		const embed = new Discord.MessageEmbed()
+		.setTitle("Current Queue #1")
+		.setColor("#0099ff")
+        .setDescription(membersInQueue.join("\n"))
+        .setTimestamp()
+
+		return message.channel.send({embed});
 	}
 	
+});
+
+bot.on('voiceStateUpdate', (oldState, newState) =>
+{	
+	if(newState.member.voice.channelID === "771784239132704779") // Voice channel for queue
+	{
+		console.log('[DEBUG]Console: ' + newState.member.displayName + ' joined voice channel Queue.');
+		const m = newState.member.guild.channels.cache.get('771545218642214924').send(newState.member.displayName + ' joined voice channel Queue.')
+              .then((msg) => {
+                  getjointime[newState.member] = msg.createdTimestamp;
+      });
+	}
 });
 
 bot.login(botconfig.token);
