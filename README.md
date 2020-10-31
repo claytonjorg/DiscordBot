@@ -3,7 +3,7 @@ Developed using the Discord API and JavaScript. Primary function is to recognize
 
 ### General Information
 The following API's and libraries were used:
-- https://discord.js.org/#/ -> Used to function with the Discord client. (Version: 12)
+- https://discord.js.org/ -> Used to function with the Discord client. (Version: 12)
 - https://nodejs.org/en/ -> Used to compile JavaScript. (Version: 14.15.0)
 
 ### Commands
