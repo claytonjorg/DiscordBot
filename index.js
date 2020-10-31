@@ -117,13 +117,22 @@ bot.on("message", async message =>
 	}
 	else if(cmd === `${prefix}help`)
 	{
-		message.channel.send("SAMPLE PLACEHOLDER");
+		const embed = new Discord.MessageEmbed()
+		.setTitle('Help Info')
+		.addField('!about', 'Displays a embed about message.')
+		.addField('!website/web', 'Displays a link to your website.')
+		.addField('!ping', 'Sends a ping and calculates the ms response time.')
+		.addField('!servers', 'Displays a embed servers message.')
+		.addField('!eula', 'Creates the EULA for users to agree to.')
+		.addField('!mute', 'Mutes a user from the text channels.')
+		.addField('!role', 'Temporarily assigns a role to a user. (time key: 5s = 5 seconds, 5m = 5 minutes, 5hr = 5 hours)')
+		.addField('!queue', 'Displays a embed message with a list of users connected to a specific voice channel and the time they joined.')
+		.setColor('#0099ff')
+		.setTimestamp()
+
+		message.channel.send({embed});
 	}
-	else if(cmd === `${prefix}website`)
-	{
-		message.channel.send("https://www.TESTDOMAIN.com");
-	}
-	else if(cmd === `${prefix}web`)
+	else if(cmd === `${prefix}website` || cmd === `${prefix}web`)
 	{
 		message.channel.send("https://www.TESTDOMAIN.com");
 	}
@@ -157,7 +166,7 @@ bot.on("message", async message =>
 
 		message.channel.send({embed})
 		 .then(function (message) {
-              	message.react("📑")
+              message.react("📑")
             }).catch(function() {
               console.error;
              });
@@ -235,8 +244,8 @@ bot.on("message", async message =>
 		const embed = new Discord.MessageEmbed()
 		.setTitle("Current Queue #1")
 		.setColor("#0099ff")
-        	.setDescription(membersInQueue.join("\n"))
-        	.setTimestamp()
+        .setDescription(membersInQueue.join("\n"))
+        .setTimestamp()
 
 		return message.channel.send({embed});
 	}
@@ -249,8 +258,8 @@ bot.on('voiceStateUpdate', (oldState, newState) =>
 	{
 		console.log('[DEBUG]Console: ' + newState.member.displayName + ' joined voice channel Queue.');
 		const m = newState.member.guild.channels.cache.get('771545218642214924').send(newState.member.displayName + ' joined voice channel Queue.')
-              		.then((msg) => {
-                 	 getjointime[newState.member] = msg.createdTimestamp;
+              .then((msg) => {
+                  getjointime[newState.member] = msg.createdTimestamp;
       });
 	}
 });
