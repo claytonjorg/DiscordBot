@@ -108,7 +108,7 @@ bot.on("message", async message =>
 		.setThumbnail(bot.user.displayAvatarURL())
 		.setDescription('Offical ckL Discord Bot!')
 		.addField('Version', '0.9.14')
-		.addField('Author', 'claytonjorg (SeaC)')
+		.addField('Author', '@claytonjorg (SeaC#6528)')
 		.addField('URL', 'https://github.com/claytonjorg/DiscordBot')
 		.setColor('#0099ff')
 		.setTimestamp()
